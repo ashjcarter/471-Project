@@ -9,7 +9,7 @@ public class Process
     private int startTime;
     private int endTime;
 
-    public Process(int processID, int arrivalTime, int priority, int burstUnits)
+    public Process(int arrivalTime, int burstUnits, int priority)
     {
         this.processID = processID;
         this.arrivalTime = arrivalTime;
