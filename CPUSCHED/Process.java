@@ -15,4 +15,44 @@ public class Process
         this.burstUnits = burstUnits;
     }
     
+    public int getProcessID()
+    {
+        return processID;
+    }
+
+    public void setProcessID(int processID)
+    {
+        this.processID = processID;
+    }
+
+    public int getArrivalTime()
+    {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(int arrivalTime)
+    {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public int getPriority()
+    {
+        return priority;
+    }
+
+    public void getPriority(int priority)
+    {
+        this.priority = priority;
+    }
+
+    public int getBurstUnits()
+    {
+        return burstUnits;
+    }
+
+    public void setBurstUnits(int burstUnits)
+    {
+        this.burstUnits = burstUnits;
+    }
+
 }
