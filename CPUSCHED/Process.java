@@ -6,6 +6,8 @@ public class Process
     private int arrivalTime;
     private int priority;
     private int burstUnits;
+    private int startTime;
+    private int finishedTime;
 
     public Process(int processID, int arrivalTime, int priority, int burstUnits)
     {
@@ -53,6 +55,21 @@ public class Process
     public void setBurstUnits(int burstUnits)
     {
         this.burstUnits = burstUnits;
+    }
+
+    public int getStartTime()
+    {
+        return startTime;
+    }
+
+    public void setStartTime(int startTime)
+    {
+        this.startTime = startTime;
+    }
+
+    public int getFinishedTime()
+    {
+        return finishedTime;
     }
 
 }
