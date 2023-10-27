@@ -11,6 +11,7 @@ public class Main
     private static Queue<ProcessData> readFile(String fileName)
     {
         Queue<ProcessData> processQueue = new LinkedList<>();
+        int processID = 0;
 
         try
         {
@@ -27,7 +28,7 @@ public class Main
                 String line = scanner.nextLine();
                 String[] processFile = line.trim().split("\t");
         
-                int processID = 0;
+              
                 int arrivalTime = Integer.parseInt(processFile[0]);
                 int burstUnits = Integer.parseInt(processFile[1]);
                 int priority = Integer.parseInt(processFile[2]);
@@ -39,8 +40,9 @@ public class Main
 
             }
             scanner.close();
-        }catch(FileNotFoundException e)
-        {
+
+        } catch(FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
         return processQueue;
