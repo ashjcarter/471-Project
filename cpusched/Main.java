@@ -1,4 +1,4 @@
-package CPUSCHED;
+package cpusched;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -50,7 +50,7 @@ public class Main
 
     public static void main (String[] args)
     {
-        Queue<ProcessData> processQueue = readFile("CPUSCHED/Datafile1.txt");
+        Queue<ProcessData> processQueue = readFile("com.cpusched/Datafile1.txt");
 
         for(ProcessData processes : processQueue)
         {
