@@ -2,30 +2,30 @@ package CPUSCHED;
 
 public class Process
 {
-    // private int processID;
+    private int processID;
     private int arrivalTime;
     private int priority;
     private int burstUnits;
     private int startTime;
     private int endTime;
 
-    public Process(int arrivalTime, int burstUnits, int priority)
+    public Process(int processID, int arrivalTime, int burstUnits, int priority)
     {
-        // this.processID = processID;
+        this.processID = processID;
         this.arrivalTime = arrivalTime;
         this.priority = priority;
         this.burstUnits = burstUnits;
     }
     
-    // public int getProcessID()
-    // {
-    //     return processID;
-    // }
+    public int getProcessID()
+    {
+        return processID;
+    }
 
-    // public void setProcessID(int processID)
-    // {
-    //     this.processID = processID;
-    // }
+    public void setProcessID(int processID)
+    {
+        this.processID = processID;
+    }
 
     public int getArrivalTime()
     {
