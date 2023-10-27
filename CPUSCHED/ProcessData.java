@@ -67,7 +67,7 @@ public class ProcessData
         this.startTime = startTime;
     }
 
-    public int getEndtime()
+    public int getEndTime()
     {
         return endTime;
     }
