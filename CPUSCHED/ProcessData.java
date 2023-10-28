@@ -1,4 +1,4 @@
-package cpusched;
+package CPUSCHED;
 
 public class ProcessData
 {

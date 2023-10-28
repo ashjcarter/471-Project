@@ -1,4 +1,4 @@
-package cpusched;
+package CPUSCHED;
 
 import java.io.File;
 import java.io.FileNotFoundException;
