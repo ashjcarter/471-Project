@@ -50,7 +50,7 @@ public class Main
 
     public static void main (String[] args)
     {
-        Queue<ProcessData> processQueue = readFile("com.cpusched/Datafile1.txt");
+        Queue<ProcessData> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
 
         for(ProcessData processes : processQueue)
         {
