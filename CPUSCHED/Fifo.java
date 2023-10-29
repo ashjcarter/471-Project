@@ -23,6 +23,7 @@ public class Fifo
         int waitTimeTotal = 0;
         int currTime = 10;
         int numProcess = processQueue.size();
+        
         for(ProcessData process: processQueue)
         {
             int waitTime = Math.max(0, currTime - process.getArrivalTime());
@@ -30,7 +31,6 @@ public class Fifo
             currTime += process.getBurstUnits();
         }
         double avgWaitTime = (double)waitTimeTotal / numProcess;
-        System.out.println("Total Wait Time: " + waitTimeTotal);
         System.out.println("Average Wait Time: " + avgWaitTime);
     }
 }
