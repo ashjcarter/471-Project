@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class Main 
 {
-    private static Queue<ProcessData> readFile(String fileName)
+    private static Queue<Process> readFile(String fileName)
     {
-        Queue<ProcessData> processQueue = new LinkedList<>();
+        Queue<Process> processQueue = new LinkedList<>();
         int processID = 0;
 
         try
@@ -26,7 +26,7 @@ public class Main
             String line = " ";
             int count = 0;
            
-            while(scanner.hasNextLine() && count < 5)
+            while(scanner.hasNextLine() && count < 10)
             {
                 line = scanner.nextLine();
                 
@@ -36,7 +36,7 @@ public class Main
                 int burstUnits = Integer.parseInt(processFile[1]);
                 int priority = Integer.parseInt(processFile[2]);
 
-                ProcessData processes = new ProcessData(processID, arrivalTime, burstUnits, priority);
+                Process processes = new Process(processID, arrivalTime, burstUnits, priority);
                 processQueue.add(processes);
                 processID++;
                 count++;
@@ -54,25 +54,26 @@ public class Main
 
     public static void main (String[] args)
     {
-        Queue<ProcessData> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
+        Queue<Process> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
+ 
         // Fifo FCFS = new Fifo();
         // Fifo.calcWait(processQueue);
         System.out.println("\nStatistics for the Run\n\n");
         System.out.println("Number of processess: " + processQueue.size());
-        Fifo.calcTurnaround(processQueue);
         Fifo.calcWait(processQueue);
+        Fifo.calcTurnaround(processQueue);
         
-        // for(ProcessData processes : processQueue)
-        // {
+        for(Process processes : processQueue)
+        {
 
-        //     System.out.println("Process ID: " + processes.getProcessID());
-        //     System.out.println("Arrival Time: " + processes.getArrivalTime());
-        //     System.out.println("Priority: " + processes.getPriority());
-        //     System.out.println("Burst Units: " + processes.getBurstUnits());
+            // System.out.println("Process ID: " + processes.getProcessID());
+            // System.out.println("Arrival Time: " + processes.getArrivalTime());
+            // // System.out.println("Priority: " + processes.getPriority());
+            // System.out.println("Burst Units: " + processes.getBurstUnits());
         //     System.out.println("Start Time: " + processes.getStartTime());
         //     System.out.println("End Time: " + processes.getEndTime());
         //     System.out.println(" ");
-        // }
+        }
 
         
 

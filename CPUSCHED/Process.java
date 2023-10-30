@@ -1,6 +1,6 @@
 package CPUSCHED;
 
-public class ProcessData
+public class Process
 {
     private int processID;
     private int arrivalTime;
@@ -8,8 +8,10 @@ public class ProcessData
     private int burstUnits;
     private int startTime;
     private int endTime;
+    private int waitTime;
+    private int turnaround;
 
-    public ProcessData(int processID, int arrivalTime, int burstUnits, int priority)
+    public Process(int processID, int arrivalTime, int burstUnits, int priority)
     {
         this.processID = processID;
         this.arrivalTime = arrivalTime;
@@ -76,6 +78,26 @@ public class ProcessData
     {
         this.endTime = endTime;
         
+    }
+
+    public int getWaitTime()
+    {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) 
+    {
+        this.endTime = waitTime;
+    }
+
+    public void setTurnaroundtime(int turnaround) 
+    {
+        this.turnaround = turnaround;
+    }
+
+    public int getTurnaroundtime() 
+    {
+        return turnaround;
     }
 
 }
