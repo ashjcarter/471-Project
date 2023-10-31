@@ -1,5 +1,6 @@
 package CPUSCHED;
 
+import java.text.DecimalFormat;
 import java.util.Queue;
 
 public class Fifo 
@@ -29,18 +30,20 @@ public class Fifo
             totalTurnaroundTime += currTime - currProcess.getArrivalTime();
             totalResponseTime += waitTime;
         }
-       
+        
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
         double throughput = (double)numProcess / currTime;
 
-        System.out.println("Elaspted time: " + currTime);
-        System.out.println("Throughput: " + throughput);
-        System.out.println("CPU Utilization: " + throughput * 100);
-        System.out.println("Average Wait Time (in CPU burst times): " + avgWaitTime);
-        System.out.println("Average Turnaround Time (in CPU burst times): " + avgTurnaroundTime);
-        System.out.println("Average Response Time (in CPU burst times): " + avgResponseTime);
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        System.out.println("Elaspted time: " + df.format(currTime));
+        System.out.println("Throughput: " + df.format(throughput));
+        System.out.println("CPU Utilization: " + df.format(throughput * 100));
+        System.out.println("Average Wait Time (in CPU burst times): " + df.format(avgWaitTime));
+        System.out.println("Average Turnaround Time (in CPU burst times): " + df.format(avgTurnaroundTime));
+        System.out.println("Average Response Time (in CPU burst times): " + df.format(avgResponseTime));
         
     }
 }
