@@ -61,6 +61,10 @@ public class Main
         
         Fifo FCFS = new Fifo();
         FCFS.fifoScheduling(processQueue);
+
+        Sjf SJF = new Sjf();
+        SJF.sjfScheduling(processQueue);
+
         
 
     }
