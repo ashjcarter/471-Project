@@ -55,26 +55,12 @@ public class Main
     public static void main (String[] args)
     {
         Queue<Process> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
- 
-        // Fifo FCFS = new Fifo();
-        // Fifo.calcWait(processQueue);
-        System.out.println("\nStatistics for the Run\n\n");
+
+        System.out.println("\nStatistics for the Run\n");
         System.out.println("Number of processess: " + processQueue.size());
-        Fifo.calcWait(processQueue);
-        Fifo.calcTurnaround(processQueue);
         
-        for(Process processes : processQueue)
-        {
-
-            // System.out.println("Process ID: " + processes.getProcessID());
-            // System.out.println("Arrival Time: " + processes.getArrivalTime());
-            // // System.out.println("Priority: " + processes.getPriority());
-            // System.out.println("Burst Units: " + processes.getBurstUnits());
-        //     System.out.println("Start Time: " + processes.getStartTime());
-        //     System.out.println("End Time: " + processes.getEndTime());
-        //     System.out.println(" ");
-        }
-
+        Fifo FCFS = new Fifo();
+        FCFS.fifoScheduling(processQueue);
         
 
     }

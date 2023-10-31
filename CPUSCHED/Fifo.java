@@ -4,48 +4,43 @@ import java.util.Queue;
 
 public class Fifo 
 {
-    public static void calcTurnaround(Queue<Process> processQueue)
+    public void fifoScheduling(Queue<Process> processQueue)
     {
-        int totalTurnaround = 0;
         int numProcess = processQueue.size();
-
-        for(Process process: processQueue)
-        {
-            int endTime = process.getArrivalTime() + process.getBurstUnits();
-            System.out.println("End time: " + endTime);
-            int turnaround = endTime - process.getArrivalTime();
-            process.setTurnaroundtime(turnaround);
-            totalTurnaround += turnaround;
-        }
-        double avgTurnaround = (double)totalTurnaround / numProcess;
-        System.out.println("Average Turnaround Time: " + avgTurnaround);
-    }
-
-    public static void calcWait(Queue<Process> processQueue)
-    {
-        int waitTimeTotal = 0;
+        int totalWaitTime = 0;
+        int totalTurnaroundTime = 0;
+        int totalResponseTime = 0;
         int currTime = 0;
-        int numProcess = processQueue.size();
-
-        for(Process process: processQueue)
+        // System.out.println("(Fifo) Number of processess: " + numProcess);
+        while(!processQueue.isEmpty())
         {
-           
-            int waitTime = (process.getTurnaroundtime() - process.getBurstUnits());
-            System.out.println("Wait time: " + waitTime);
-            process.setWaitTime(waitTime);
-            waitTimeTotal += waitTime;
-            currTime += process.getBurstUnits();
-            System.out.println("Current time: " + currTime);
-            
+            Process currProcess = processQueue.poll();
+
+            if(currProcess.getArrivalTime() > currTime)
+            {
+                currTime = currProcess.getArrivalTime();
+            }
+
+            int waitTime = currTime - currProcess.getArrivalTime();
+            // System.out.println("Wait time: " + waitTime);
+            totalWaitTime += waitTime;
+            currTime += currProcess.getBurstUnits();
+    
+            totalTurnaroundTime += currTime - currProcess.getArrivalTime();
+            totalResponseTime += waitTime;
         }
-        double avgWaitTime = (double)waitTimeTotal / numProcess;
-        System.out.println("Average Wait Time: " + avgWaitTime);
-    }
+       
+        double avgWaitTime = (double)totalWaitTime / numProcess;
+        double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
+        double avgResponseTime = (double)totalResponseTime / numProcess;
+        double throughput = (double)numProcess / currTime;
 
-    public static void elaspedTime(Queue<Process> processQueue)
-    {
-        int throughput = processQueue.size()/ 10;
-        System.out.println("Throughput: " + processQueue.size());
-
+        System.out.println("Elaspted time: " + currTime);
+        System.out.println("Throughput: " + throughput);
+        System.out.println("CPU Utilization: " + throughput * 100);
+        System.out.println("Average Wait Time (in CPU burst times): " + avgWaitTime);
+        System.out.println("Average Turnaround Time (in CPU burst times): " + avgTurnaroundTime);
+        System.out.println("Average Response Time (in CPU burst times): " + avgResponseTime);
+        
     }
 }
