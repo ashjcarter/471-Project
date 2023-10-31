@@ -35,7 +35,6 @@ public class Fifo
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
         double throughput = (double)numProcess / currTime;
-
         DecimalFormat df = new DecimalFormat("#.##");
 
         System.out.println("Elaspted time: " + df.format(currTime));
