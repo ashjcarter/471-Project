@@ -16,46 +16,60 @@ public class Sjf
         // System.out.println("I'm in SJF.java");
         List<Process> processes = new ArrayList<>(processQueue);
         Collections.sort(processes, Comparator.comparingInt(Process::getArrivalTime));
-
-        PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getArrivalTime));
+        PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getBurstUnits));
+        
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
+        int waitTime = 0;
         int currTime = 0;
         int index = 0;
 
+        // System.out.println("Before outer while loop");
         while(!readyQueue.isEmpty() || index < numProcess)
         {
+            // System.out.println("Inside outer while loop");
             while(index < numProcess && processes.get(index).getArrivalTime() <= currTime)
             {
+                // System.out.println("Inside inner while loop");
                 readyQueue.offer(processes.get(index++));
             }
-        }
+        
 
-
-        for( Process process : processes)
+        if(!readyQueue.isEmpty())
         {
-            currTime = Math.max(currTime, process.getArrivalTime());
-            // System.out.println("Current time: " + currTime);
-            // System.out.println("I'm in for loop");
+            
+            Process currProcess = readyQueue.poll();
+            if(currProcess.getArrivalTime() <= currTime)
+            {
+                waitTime = currTime - currProcess.getArrivalTime();
+                currTime += currProcess.getBurstUnits();
+            }
+            else
+            {
+                currTime = currProcess.getArrivalTime() + currProcess.getBurstUnits();
+            }
+            // System.out.println("Finish time for process " + currProcess.getProcessID() + ": " + currTime);
+            // System.out.println("Burst time for process " + currProcess.getProcessID() + ": " + currProcess.getBurstUnits());
+            // System.out.println("Turnaround time for process " + currProcess.getProcessID() + ": " + (currTime - currProcess.getArrivalTime()));
+            // System.out.println("Waiting time for process " + currProcess.getProcessID() + ": " + waitTime);
+            // System.out.println("Arrival Times: " + currProcess.getArrivalTime());
 
-            int waitTime = currTime - process.getArrivalTime();
             totalWaitTime += waitTime;
 
-            currTime += process.getBurstUnits();
-
-            int turnAroundTime = waitTime + process.getBurstUnits();
+            int turnAroundTime = waitTime + currProcess.getBurstUnits();
             totalTurnaroundTime += turnAroundTime;
-            System.out.println("Turnaround times: " + turnAroundTime);
+
+            totalResponseTime += waitTime;
 
         }
+        else
+        {
+            currTime = processes.get(index).getArrivalTime();
+        }
+    }
 
-
-        //     }
-            
-        // }
-   
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
