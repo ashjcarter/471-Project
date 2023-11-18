@@ -59,11 +59,12 @@ public class Main
         System.out.println("\nStatistics for the Run\n");
         System.out.println("Number of processess: " + processQueue.size());
         
-        Fifo FCFS = new Fifo();
-        FCFS.fifoScheduling(processQueue);
+        // Fifo FCFS = new Fifo();
+        // FCFS.fifoScheduling(processQueue);
 
         Sjf SJF = new Sjf();
         SJF.sjfScheduling(processQueue);
+        // System.out.println("Hello");
 
         
 
