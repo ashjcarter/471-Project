@@ -26,7 +26,7 @@ public class Main
             String line = " ";
             int count = 0;
            
-            while(scanner.hasNextLine() && count < 500)
+            while(scanner.hasNextLine() && count < 11)
             {
                 line = scanner.nextLine();
                 
@@ -59,14 +59,14 @@ public class Main
         System.out.println("\nStatistics for the Run\n");
         System.out.println("Number of processess: " + processQueue.size());
         
-        // Fifo fifo= new Fifo();
-        // fifo.fifoScheduling(processQueue);
+        Fifo fifo= new Fifo();
+        fifo.fifoScheduling(processQueue);
 
         // Sjf sjf = new Sjf();
         // sjf.sjfScheduling(processQueue);
         
-        Priority priority = new Priority();
-        priority.priorityScheduling(processQueue);
+        // Priority priority = new Priority();
+        // priority.priorityScheduling(processQueue);
 
         
 
