@@ -11,6 +11,8 @@ public class Fifo
         int totalWaitTime = 0;
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
+        int totalProcessingTime = 0;
+        int firstArrival = -1;
         int currTime = 0;
         // System.out.println("(Fifo) Number of processess: " + numProcess);
         while(!processQueue.isEmpty())
@@ -22,27 +24,34 @@ public class Fifo
                 currTime = currProcess.getArrivalTime();
             }
 
+            if(firstArrival == -1)
+            {
+                firstArrival = currProcess.getArrivalTime();
+            }
+
             int waitTime = currTime - currProcess.getArrivalTime();
             // System.out.println("Wait time: " + waitTime);
             totalWaitTime += waitTime;
             currTime += currProcess.getBurstUnits();
+            totalProcessingTime += currProcess.getBurstUnits();
     
             totalTurnaroundTime += currTime - currProcess.getArrivalTime();
             totalResponseTime += waitTime;
         }
         
+        double throughput = (double)numProcess / currTime;
+        double cpuUtilization = ((double)totalProcessingTime / (currTime - firstArrival)) * 100;
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
-        double throughput = (double)numProcess / currTime;
         DecimalFormat df = new DecimalFormat("#.##");
 
-        System.out.println("Elaspted time: " + df.format(currTime));
+        System.out.println("Total elaspted time: " + df.format(currTime));
         System.out.println("Throughput: " + df.format(throughput));
-        System.out.println("CPU Utilization: " + df.format(throughput * 100));
-        System.out.println("Average Wait Time (in CPU burst times): " + df.format(avgWaitTime));
-        System.out.println("Average Turnaround Time (in CPU burst times): " + df.format(avgTurnaroundTime));
-        System.out.println("Average Response Time (in CPU burst times): " + df.format(avgResponseTime));
+        System.out.println("CPU utilization:"  + df.format(cpuUtilization) + "%");
+        System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
+        System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
+        System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime));
         
     }
 }
