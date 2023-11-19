@@ -12,7 +12,7 @@ public class Fifo
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
         int totalProcessingTime = 0;
-        int firstArrival = -1;
+        int startTime = -1;
         int currTime = 0;
         // System.out.println("(Fifo) Number of processess: " + numProcess);
         while(!processQueue.isEmpty())
@@ -24,9 +24,9 @@ public class Fifo
                 currTime = currProcess.getArrivalTime();
             }
 
-            if(firstArrival == -1)
+            if(startTime == -1)
             {
-                firstArrival = currProcess.getArrivalTime();
+                startTime = currProcess.getArrivalTime();
             }
 
             int waitTime = currTime - currProcess.getArrivalTime();
@@ -40,7 +40,7 @@ public class Fifo
         }
         
         double throughput = (double)numProcess / currTime;
-        double cpuUtilization = ((double)totalProcessingTime / (currTime - firstArrival)) * 100;
+        double cpuUtilization = ((double)totalProcessingTime / (currTime - startTime)) * 100;
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
