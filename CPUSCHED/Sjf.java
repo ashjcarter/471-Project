@@ -1,6 +1,5 @@
 package CPUSCHED;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,7 +7,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Sjf 
+public class Sjf extends Scheduler
 {
     
     public void sjfScheduling(Queue<Process> processQueue)
@@ -21,10 +20,9 @@ public class Sjf
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
         int totalTurnaroundTime = 0;
-        double totalResponseTime = 0;
-        double totalProcessingTime = 0;
-        double startTime = processes.get(0).getArrivalTime();
-        double endTime = 0;
+        int totalResponseTime = 0;
+        int totalProcessingTime = 0;
+        int startTime = processes.get(0).getArrivalTime();
         int waitTime = 0;
         int currTime = 0;
         int index = 0;
@@ -58,11 +56,10 @@ public class Sjf
             // System.out.println("Turnaround time for process " + currProcess.getProcessID() + ": " + (currTime - currProcess.getArrivalTime()));
             // System.out.println("Waiting time for process " + currProcess.getProcessID() + ": " + waitTime);
             // System.out.println("Arrival Times: " + currProcess.getArrivalTime());
-            double responseTime = (double)(currTime - currProcess.getArrivalTime()) / currProcess.getBurstUnits();
-            totalResponseTime += responseTime;
+            // double responseTime = (double)(currTime - currProcess.getArrivalTime()) / currProcess.getBurstUnits();
+            totalResponseTime += waitTime;
 
             totalProcessingTime += currProcess.getBurstUnits();
-            endTime = currTime;
 
             totalWaitTime += waitTime;
 
@@ -76,21 +73,22 @@ public class Sjf
         }
     }
 
-        double throughput = (double)numProcess/currTime;
-        double cpuUtilization = (totalProcessingTime / (endTime - startTime)) * 100;
-        double avgWaitTime = (double)totalWaitTime / numProcess;
-        double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
-        double avgResponseTime = (double)totalResponseTime / numProcess;
-        DecimalFormat df = new DecimalFormat("#.##");
+    printCalc(startTime, currTime, numProcess, totalWaitTime, 
+               totalTurnaroundTime, totalResponseTime, totalProcessingTime);
 
-        System.out.println("Total elaspted time: " + df.format(currTime));
-        System.out.println("Throughput: " + df.format(throughput));
-        System.out.println("CPU utilization:" + df.format(cpuUtilization) + "%");
-        System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
-        System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
-        System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime));
-       
+        // double throughput = (double)numProcess/currTime;
+        // double cpuUtilization = (totalProcessingTime / (endTime - startTime)) * 100;
+        // double avgWaitTime = (double)totalWaitTime / numProcess;
+        // double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
+        // double avgResponseTime = (double)totalResponseTime / numProcess;
+        // DecimalFormat df = new DecimalFormat("#.##");
 
+        // System.out.println("Total elaspted time: " + df.format(currTime));
+        // System.out.println("Throughput: " + df.format(throughput));
+        // System.out.println("CPU utilization:" + df.format(cpuUtilization) + "%");
+        // System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
+        // System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
+        // System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime));
         
     }
     
