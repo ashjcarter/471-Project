@@ -22,11 +22,6 @@ public class Fifo extends Scheduler
                 currTime = currProcess.getArrivalTime();
             }
 
-            // if(startTime == -1)
-            // {
-            //     startTime = currProcess.getArrivalTime();
-            // }
-
             int waitTime = currTime - currProcess.getArrivalTime();
             // System.out.println("Wait time: " + waitTime);
             totalWaitTime += waitTime;
