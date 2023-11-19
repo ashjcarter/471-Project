@@ -20,11 +20,16 @@ public class Sjf
         
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
+        double totalThroughput = 0;
         int totalTurnaroundTime = 0;
-        int totalResponseTime = 0;
+        double totalResponseTime = 0;
+        double totalProcessingTime = 0;
+        double startTime = processes.get(0).getArrivalTime();
+        double endTime = 0;
         int waitTime = 0;
         int currTime = 0;
         int index = 0;
+        int count = 0;
 
         // System.out.println("Before outer while loop");
         while(!readyQueue.isEmpty() || index < numProcess)
@@ -55,13 +60,19 @@ public class Sjf
             // System.out.println("Turnaround time for process " + currProcess.getProcessID() + ": " + (currTime - currProcess.getArrivalTime()));
             // System.out.println("Waiting time for process " + currProcess.getProcessID() + ": " + waitTime);
             // System.out.println("Arrival Times: " + currProcess.getArrivalTime());
+            double responseTime = (double)(currTime - currProcess.getArrivalTime()) / currProcess.getBurstUnits();
+            totalResponseTime += responseTime;
+            count++;
+
+            totalThroughput += 1.0 / currProcess.getBurstUnits();
+
+            totalProcessingTime += currProcess.getBurstUnits();
+            endTime = currTime;
 
             totalWaitTime += waitTime;
 
             int turnAroundTime = waitTime + currProcess.getBurstUnits();
             totalTurnaroundTime += turnAroundTime;
-
-            totalResponseTime += waitTime;
 
         }
         else
@@ -70,18 +81,18 @@ public class Sjf
         }
     }
 
+        double cpuUtilization = (totalProcessingTime / (endTime - startTime)) * 100;
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;
-        double throughput = (double)numProcess / currTime;
         DecimalFormat df = new DecimalFormat("#.##");
 
-        System.out.println("Elaspted time: " + df.format(currTime));
-        System.out.println("Throughput: " + df.format(throughput));
-        System.out.println("CPU Utilization: " + df.format(throughput * 100));
-        System.out.println("Average Wait Time (in CPU burst times): " + df.format(avgWaitTime));
-        System.out.println("Average Turnaround Time (in CPU burst times): " + df.format(avgTurnaroundTime));
-        System.out.println("Average Response Time (in CPU burst times): " + df.format(avgResponseTime));
+        System.out.println("Total elaspted time: " + df.format(currTime));
+        System.out.println("Throughput: " + df.format(totalThroughput));
+        System.out.println("CPU utilization:" + df.format(cpuUtilization) + "%");
+        System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
+        System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
+        System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime));
        
 
         
