@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public abstract class Scheduler 
 {
-    protected void printCalc(int startTime, int endTime, int currTime, int numProcess, int totalWaitTime, 
+    protected void printCalc(int startTime, int currTime, int numProcess, int totalWaitTime, 
     int totalTurnaroundTime, int totalResponseTime, int totalProcessingTime)
     {
         double throughput = (double)numProcess / currTime;
