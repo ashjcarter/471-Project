@@ -26,7 +26,7 @@ public class Main
             String line = " ";
             int count = 0;
            
-            while(scanner.hasNextLine() && count < 10)
+            while(scanner.hasNextLine() && count < 500)
             {
                 line = scanner.nextLine();
                 
