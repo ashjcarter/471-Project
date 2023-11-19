@@ -51,12 +51,7 @@ public class Sjf extends Scheduler
             {
                 currTime = currProcess.getArrivalTime() + currProcess.getBurstUnits();
             }
-            // System.out.println("Finish time for process " + currProcess.getProcessID() + ": " + currTime);
-            // System.out.println("Burst time for process " + currProcess.getProcessID() + ": " + currProcess.getBurstUnits());
-            // System.out.println("Turnaround time for process " + currProcess.getProcessID() + ": " + (currTime - currProcess.getArrivalTime()));
-            // System.out.println("Waiting time for process " + currProcess.getProcessID() + ": " + waitTime);
-            // System.out.println("Arrival Times: " + currProcess.getArrivalTime());
-            // double responseTime = (double)(currTime - currProcess.getArrivalTime()) / currProcess.getBurstUnits();
+            
             totalResponseTime += waitTime;
 
             totalProcessingTime += currProcess.getBurstUnits();
@@ -75,20 +70,6 @@ public class Sjf extends Scheduler
 
     printCalc(startTime, currTime, numProcess, totalWaitTime, 
                totalTurnaroundTime, totalResponseTime, totalProcessingTime);
-
-        // double throughput = (double)numProcess/currTime;
-        // double cpuUtilization = (totalProcessingTime / (endTime - startTime)) * 100;
-        // double avgWaitTime = (double)totalWaitTime / numProcess;
-        // double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
-        // double avgResponseTime = (double)totalResponseTime / numProcess;
-        // DecimalFormat df = new DecimalFormat("#.##");
-
-        // System.out.println("Total elaspted time: " + df.format(currTime));
-        // System.out.println("Throughput: " + df.format(throughput));
-        // System.out.println("CPU utilization:" + df.format(cpuUtilization) + "%");
-        // System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
-        // System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
-        // System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime));
         
     }
     
