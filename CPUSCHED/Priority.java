@@ -10,7 +10,7 @@ public class Priority extends Scheduler
     {
         PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getPriority));
         Process currProcess = null;
-        boolean firstTime = true;
+        boolean isFirstTime = true;
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
         int totalProcessingTime = 0;
@@ -39,7 +39,7 @@ public class Priority extends Scheduler
                     readyQueue.add(currProcess);
                 }
                 currProcess = readyQueue.poll();
-                firstTime = true; // Resetting for when a new process starts
+                isFirstTime = true; // Resetting for when a new process starts
                 
             }
 
@@ -49,10 +49,10 @@ public class Priority extends Scheduler
                 {
                     startTime = currTime;
                 }
-                if(firstTime)
+                if(isFirstTime)
                 {
                     totalWaitTime += currTime - currProcess.getArrivalTime();
-                    firstTime = false;
+                    isFirstTime = false;
                 }
 
                 currTime++;
