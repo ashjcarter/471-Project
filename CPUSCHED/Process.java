@@ -6,10 +6,6 @@ public class Process
     private int arrivalTime;
     private int priority;
     private int burstUnits;
-    private int startTime;
-    private int endTime;
-    private int waitTime;
-    private int turnaround;
 
     public Process(int processID, int arrivalTime, int burstUnits, int priority)
     {
@@ -59,45 +55,16 @@ public class Process
         this.burstUnits = burstUnits;
     }
 
-    public int getStartTime()
+    public void decrementBurst()
     {
-        return startTime;
-    }
+        if(this.burstUnits > 0)
+        {
+            this.burstUnits--;
+        }
 
-    public void setStartTime(int startTime)
-    {
-        this.startTime = startTime;
     }
+    
 
-    public int getEndTime()
-    {
-        return endTime;
-    }
-
-    public void setEndTime(int endTime)
-    {
-        this.endTime = endTime;
-        
-    }
-
-    public int getWaitTime()
-    {
-        return waitTime;
-    }
-
-    public void setWaitTime(int waitTime) 
-    {
-        this.endTime = waitTime;
-    }
-
-    public void setTurnaroundtime(int turnaround) 
-    {
-        this.turnaround = turnaround;
-    }
-
-    public int getTurnaroundtime() 
-    {
-        return turnaround;
-    }
+   
 
 }
