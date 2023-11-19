@@ -1,14 +1,17 @@
 package CPUSCHED;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 public class Priority extends Scheduler
 {
     public void priorityScheduling(Queue<Process> processQueue)
     {
         PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getPriority));
+        Set<Process> finishedProcesses = new HashSet<>();
         Process currProcess = null;
         boolean isFirstTime = true;
         int numProcess = processQueue.size();
@@ -17,7 +20,6 @@ public class Priority extends Scheduler
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
         int startTime = -1;
-        int waitTime = 0;
         int currTime = 0;
 
         while(!processQueue.isEmpty() ||!readyQueue.isEmpty() || currProcess != null)
@@ -52,6 +54,11 @@ public class Priority extends Scheduler
                 if(isFirstTime)
                 {
                     totalWaitTime += currTime - currProcess.getArrivalTime();
+                    if(!finishedProcesses.contains(currProcess))
+                    {
+                        totalResponseTime += currTime - currProcess.getArrivalTime();
+                        finishedProcesses.add(currProcess);
+                    }
                     isFirstTime = false;
                 }
 
@@ -70,9 +77,6 @@ public class Priority extends Scheduler
             {
                 currTime++;
             }
-
-            totalResponseTime = totalWaitTime;
-
 
         }
         printCalc(startTime, currTime, numProcess, totalWaitTime, 
