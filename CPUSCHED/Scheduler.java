@@ -4,11 +4,11 @@ import java.text.DecimalFormat;
 
 public abstract class Scheduler 
 {
-    protected void printCalc(int startTime, int currTime, int numProcess, int totalWaitTime, 
+    protected void printCalc(int currTime, int numProcess, int totalWaitTime, 
     int totalTurnaroundTime, int totalResponseTime, int totalProcessingTime)
     {
         double throughput = (double)numProcess / currTime;
-        double cpuUtilization = ((double)totalProcessingTime / (currTime - startTime)) * 100;
+        double cpuUtilization = ((double)totalProcessingTime / (currTime)) * 100;
         double avgWaitTime = (double)totalWaitTime / numProcess;
         double avgTurnaroundTime = (double)totalTurnaroundTime / numProcess;
         double avgResponseTime = (double)totalResponseTime / numProcess;

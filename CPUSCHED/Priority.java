@@ -19,7 +19,6 @@ public class Priority extends Scheduler
         int totalProcessingTime = 0;
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
-        int startTime = -1;
         int currTime = 0;
 
         while(!processQueue.isEmpty() ||!readyQueue.isEmpty() || currProcess != null)
@@ -47,10 +46,10 @@ public class Priority extends Scheduler
 
             if(currProcess !=null && currProcess.getArrivalTime() <= currTime)
             {
-                if(startTime == -1)
-                {
-                    startTime = currTime;
-                }
+                // if(startTime == -1)
+                // {
+                //     startTime = currTime;
+                // }
                 if(isFirstTime)
                 {
                     totalWaitTime += currTime - currProcess.getArrivalTime();
@@ -79,7 +78,7 @@ public class Priority extends Scheduler
             }
 
         }
-        printCalc(startTime, currTime, numProcess, totalWaitTime, 
+        printCalc(currTime, numProcess, totalWaitTime, 
                     totalTurnaroundTime, totalResponseTime, totalProcessingTime);
 
 

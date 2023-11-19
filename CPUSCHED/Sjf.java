@@ -22,7 +22,6 @@ public class Sjf extends Scheduler
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
         int totalProcessingTime = 0;
-        int startTime = processes.get(0).getArrivalTime();
         int waitTime = 0;
         int currTime = 0;
         int index = 0;
@@ -51,7 +50,7 @@ public class Sjf extends Scheduler
             {
                 currTime = currProcess.getArrivalTime() + currProcess.getBurstUnits();
             }
-            
+
             totalResponseTime += waitTime;
 
             totalProcessingTime += currProcess.getBurstUnits();
@@ -68,7 +67,7 @@ public class Sjf extends Scheduler
         }
     }
 
-    printCalc(startTime, currTime, numProcess, totalWaitTime, 
+    printCalc(currTime, numProcess, totalWaitTime, 
                totalTurnaroundTime, totalResponseTime, totalProcessingTime);
         
     }
