@@ -10,32 +10,44 @@ public class Main
     private static final BlockingQueue<Integer> buffer = new LinkedBlockingQueue<>();
     private static final Random rand = new Random();
 
-    public static class Item
-    {
-        int value = 0;
-        long producedTime = 0;
-        long consumedTime = 0;
+    // public static class Item
+    // {
+    //     int value = 0;
+    //     long producedTime = 0;
+    //     long consumedTime = 0;
 
-        public Item(int value)
-        {
-            this.value = value;
-            this.producedTime = System.currentTimeMillis();
-        }
-    }
+    //     public Item(int value)
+    //     {
+    //         this.value = value;
+    //         this.producedTime = System.currentTimeMillis();
+    //     }
+    // }
 
-    private static Item produceItem()
-    {
-        // Logic to create a new item
-        return new Item((int)(Math.random() * 100));
-    }
+    // private static Item produceItem()
+    // {
+    //     // Logic to create a new item
+    //     return new Item((int)(Math.random() * 100));
+    // }
 
     private static void producer()
     {
         // Logic to produce items and insert into buffer
         while(true) 
         {
-            Item item = produceItem(); // Generate an item
-            buffer.insertItem(item);
+            try
+            {
+                Thread.sleep(rand.nextInt(4));
+                int item = rand.nextInt();
+                buffer.put(item);
+
+                System.out.println("Producer produced " + item);
+            }
+            catch(InterruptedException e)
+            {
+                Thread.currentThread().interrupt();
+            }
+            // Item item = produceItem(); // Generate an item
+            // buffer.insertItem(item);
         }
     }
 
@@ -44,10 +56,19 @@ public class Main
         // Logic to consume items and remove from buffer
         while(true) 
         {
+            try
+            {
+                // Item item = buffer.removeItem();
+                // item.consumedTime = System.currentTimeMillis();
+                int item = buffer.take();
+                System.out.println("Consumed item: " + item);
 
-            Item item = buffer.removeItem();
-            item.consumedTime = System.currentTimeMillis();
-            System.out.println("Consumed item: " + item);
+            }
+            catch(InterruptedException e)
+            {
+                Thread.currentThread().interrupt();
+            }
+
         }
     }
 
