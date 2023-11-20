@@ -3,12 +3,12 @@ package PRODUCER_CONSUMER;
 // Buffer class
 public class Buffer {
     private static final int BUFFER_SIZE = 5;
-    private final Object[] buffer = new Object[BUFFER_SIZE];
+    private final Main.Item[] buffer = new Main.Item[BUFFER_SIZE];
     private int count = 0;
     private int in = 0;
     private int out = 0;
 
-    public synchronized void insertItem(Object item) {
+    public synchronized void insertItem(Main.Item item) {
         while (count == BUFFER_SIZE) {
             try {
                 wait();
@@ -30,24 +30,10 @@ public class Buffer {
                 Thread.currentThread().interrupt();
             }
         }
-        Object item = buffer[out];
+        Main.Item item = buffer[out];
         out = (out + 1) % BUFFER_SIZE;
         count--;
         notifyAll();
         return item;
-    }
-
-    class Item
-    {
-        int value = 0;
-        long producedTime = 0;
-        long consumedTime = 0;
-
-        Item(int value)
-        {
-            this.value = value;
-            this.producedTime = System.currentTimeMillis();
-
-        }
     }
 }
