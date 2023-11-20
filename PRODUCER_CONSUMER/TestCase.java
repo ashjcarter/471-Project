@@ -2,9 +2,9 @@ package PRODUCER_CONSUMER;
 
 public class TestCase 
 {
-    private final int sleepTime;
-    private final int numProducers;
-    private final int numConsumers;
+    private int sleepTime;
+    private int numProducers;
+    private int numConsumers;
 
     public TestCase(int sleepTime, int numProducers, int numConsumers) 
     {
@@ -18,13 +18,37 @@ public class TestCase
         return sleepTime;
     }
 
+    public void setSleepTime(int sleepTime)
+    {
+        this.sleepTime = sleepTime;
+    }
+
     public int getNumProducers() 
     {
         return numProducers;
     }
 
+    public void setNumProducers(int numProducers)
+    {
+        this.numProducers = numProducers;
+    }
+
     public int getNumConsumers() 
     {
         return numConsumers;
+    }
+
+    public void setNumConsumers(int numConsumers)
+    {
+        this.numConsumers = numConsumers;
+    }
+
+    @Override
+    public String toString() {
+        return "TestCase{" +
+                "sleepTime=" + sleepTime +
+                ", numProducers=" + numProducers +
+                ", numConsumers=" + numConsumers +
+                '}';
     }
 }

@@ -25,6 +25,7 @@ public class FileReader
             while(scanner.hasNextLine()) 
             {
                 String line = scanner.nextLine();
+                System.out.println("Line from file: " + line);
                 String[] processFile = line.trim().split("\\s+");
 
                 int sleepTime = Integer.parseInt(processFile[0]);
@@ -33,6 +34,7 @@ public class FileReader
 
                 TestCase testCase = new TestCase(sleepTime, numProducers, numConsumers);
                 testCases.add(testCase);
+                System.out.println("Created TestCase: " + testCase);
             }
 
             scanner.close();
