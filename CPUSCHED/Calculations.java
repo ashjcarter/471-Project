@@ -27,15 +27,6 @@ public class Calculations
 
         return result;
 
-
-        // System.out.println("\nStatistics for the Run\n");
-        // System.out.println("Number of processess: " + numProcess);
-        // System.out.println("Total elaspted time: " + df.format(currTime));
-        // System.out.println("Throughput: " + df.format(throughput));
-        // System.out.println("CPU utilization: "  + df.format(cpuUtilization) + "%");
-        // System.out.println("Average wait time (in CPU burst times): " + df.format(avgWaitTime));
-        // System.out.println("Average turnaround time (in CPU burst times): " + df.format(avgTurnaroundTime));
-        // System.out.println("Average response time (in CPU burst times): " + df.format(avgResponseTime) +"\n");
     }
     
 }
