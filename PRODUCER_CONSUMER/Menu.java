@@ -30,7 +30,6 @@ public class Menu
             case 2:
                 inFile = "PRODUCER_CONSUMER/Input-6sec-Wait.txt";
                 outFile = "PRODUCER_CONSUMER/Output-6sec-Wait.txt";
-
                 break;
             case 3:
                 inFile = "PRODUCER_CONSUMER/Input-8sec-Wait.txt";
