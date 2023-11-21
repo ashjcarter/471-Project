@@ -116,7 +116,6 @@ public class Main
         System.out.println("Running simulation...");
 
         List<TestCase> testCases = ReadFile.readFile(inFile);
-
         for(TestCase testCase : testCases)
         {
             testCase.setOutFile(outFile);
