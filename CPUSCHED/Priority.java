@@ -6,14 +6,16 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-public class Priority extends Scheduler
+public class Priority extends Calculations
 {
-    public void priorityScheduling(Queue<Process> processQueue)
+    public String priorityScheduling(Queue<Process> processQueue)
     {
         PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getPriority));
         Set<Process> finishedProcesses = new HashSet<>();
+
         Process currProcess = null;
         boolean isFirstTime = true;
+        
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
         int totalProcessingTime = 0;
@@ -23,8 +25,6 @@ public class Priority extends Scheduler
 
         while(!processQueue.isEmpty() ||!readyQueue.isEmpty() || currProcess != null)
         {
-            // System.out.println("I'm in outer while loop");
-
             while(!processQueue.isEmpty() && processQueue.peek().getArrivalTime() <= currTime)
             {
                 readyQueue.add(processQueue.poll());
@@ -46,10 +46,7 @@ public class Priority extends Scheduler
 
             if(currProcess !=null && currProcess.getArrivalTime() <= currTime)
             {
-                // if(startTime == -1)
-                // {
-                //     startTime = currTime;
-                // }
+
                 if(isFirstTime)
                 {
                     totalWaitTime += currTime - currProcess.getArrivalTime();
@@ -78,7 +75,8 @@ public class Priority extends Scheduler
             }
 
         }
-        printCalc(currTime, numProcess, totalWaitTime, 
+        Calculations calc = new Calculations();
+        return calc.printCalc(currTime, numProcess, totalWaitTime, 
                     totalTurnaroundTime, totalResponseTime, totalProcessingTime);
 
 

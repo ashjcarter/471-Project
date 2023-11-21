@@ -2,9 +2,9 @@ package CPUSCHED;
 
 import java.util.Queue;
 
-public class Fifo extends Scheduler 
+public class Fifo extends Calculations 
 {
-    public void fifoScheduling(Queue<Process> processQueue)
+    public String fifoScheduling(Queue<Process> processQueue)
     {
         int numProcess = processQueue.size();
         int totalWaitTime = 0;
@@ -12,7 +12,7 @@ public class Fifo extends Scheduler
         int totalResponseTime = 0;
         int totalProcessingTime = 0;
         int currTime = 0;
-        // System.out.println("(Fifo) Number of processess: " + numProcess);
+
         while(!processQueue.isEmpty())
         {
             Process currProcess = processQueue.poll();
@@ -23,7 +23,7 @@ public class Fifo extends Scheduler
             }
 
             int waitTime = currTime - currProcess.getArrivalTime();
-            // System.out.println("Wait time: " + waitTime);
+
             totalWaitTime += waitTime;
             currTime += currProcess.getBurstUnits();
             totalProcessingTime += currProcess.getBurstUnits();
@@ -32,7 +32,8 @@ public class Fifo extends Scheduler
             totalResponseTime += waitTime;
         }
 
-        printCalc(currTime, numProcess, totalWaitTime, 
+        Calculations calc = new Calculations();
+        return calc.printCalc(currTime, numProcess, totalWaitTime, 
                     totalTurnaroundTime, totalResponseTime, totalProcessingTime);
     }
 }

@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Sjf extends Scheduler
+public class Sjf extends Calculations
 {
     
-    public void sjfScheduling(Queue<Process> processQueue)
+    public String sjfScheduling(Queue<Process> processQueue)
     {
-        // System.out.println("I'm in SJF.java");
         List<Process> processes = new ArrayList<>(processQueue);
         Collections.sort(processes, Comparator.comparingInt(Process::getArrivalTime));
         PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(Process::getBurstUnits));
@@ -26,13 +25,10 @@ public class Sjf extends Scheduler
         int currTime = 0;
         int index = 0;
 
-        // System.out.println("Before outer while loop");
         while(!readyQueue.isEmpty() || index < numProcess)
         {
-            // System.out.println("Inside outer while loop");
             while(index < numProcess && processes.get(index).getArrivalTime() <= currTime)
             {
-                // System.out.println("Inside inner while loop");
                 readyQueue.offer(processes.get(index++));
             }
         
@@ -66,8 +62,8 @@ public class Sjf extends Scheduler
             currTime = processes.get(index).getArrivalTime();
         }
     }
-
-    printCalc(currTime, numProcess, totalWaitTime, 
+    Calculations calc = new Calculations();
+    return calc.printCalc(currTime, numProcess, totalWaitTime, 
                totalTurnaroundTime, totalResponseTime, totalProcessingTime);
         
     }
