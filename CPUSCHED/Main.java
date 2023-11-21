@@ -2,6 +2,7 @@ package CPUSCHED;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -55,21 +56,43 @@ public class Main
     public static void main (String[] args)
     {
         Queue<Process> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
+        Menu menu = new Menu();
+        int choice = menu.display();
+        String outFile = "";
+        String output = "";
 
-        System.out.println("\nStatistics for the Run\n");
-        System.out.println("Number of processess: " + processQueue.size());
+        switch(choice)
+        {
+            case 1:
+                Fifo fifo= new Fifo();
+                output = fifo.fifoScheduling(processQueue);
+                outFile = "CPUSCHED/Fifo-Output.txt";
+                break;
+            case 2:
+                Sjf sjf = new Sjf();
+                output = sjf.sjfScheduling(processQueue);
+                outFile = "CPUSCHED/Sjf-Output.txt";
+                break;
+            case 3:
+                Priority priority = new Priority();
+                output = priority.priorityScheduling(processQueue);
+                outFile = "CPUSCHED/Priority-Output.txt";
+                break;
+            default:
+                System.out.println("Invalid input. Exiting...");
+                Fifo fifo2 = new Fifo();
+                output = fifo2.fifoScheduling(processQueue);
+                outFile = "CPUSCHED/Fifo-Output.txt";
+        }
+        try(PrintWriter out = new PrintWriter(outFile))
+        {
+            out.println(output);
+        }
+        catch(FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
         
-        Fifo fifo= new Fifo();
-        fifo.fifoScheduling(processQueue);
-
-        // Sjf sjf = new Sjf();
-        // sjf.sjfScheduling(processQueue);
-        
-        // Priority priority = new Priority();
-        // priority.priorityScheduling(processQueue);
-
-        
-
     }
     
 }
