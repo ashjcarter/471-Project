@@ -1,6 +1,5 @@
 package PRODUCER_CONSUMER;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +12,7 @@ public class Main
     private static final BlockingQueue<Item> buffer = new LinkedBlockingQueue<>();
     private static final AtomicBoolean runThreads = new AtomicBoolean(true);
     private static final Random rand = new Random();
-    private static int sleepTime;
+    private static int sleepTime = 0;
     private static long totalTurnaroundTime = 0;
     private static int totalItems = 0;
 
@@ -24,13 +23,11 @@ public class Main
         {
             try
             {
-                System.out.println("Sleeping for " + sleepTime);
                 Thread.sleep(rand.nextInt(sleepTime) * 1000);
                 int value = rand.nextInt(10);
                 Item item = new Item(value);
                 buffer.put(item);
 
-                System.out.println("Producer produced " + item.getValue());
             }
             catch(InterruptedException e)
             {
@@ -47,12 +44,9 @@ public class Main
             try
             {
                 Item item = buffer.take();
-                long turnaroundTime = System.currentTimeMillis() - item.getProductionTime();
+                double turnaroundTime = System.currentTimeMillis() - item.getProductionTime();
                 totalTurnaroundTime += turnaroundTime;
                 totalItems++;
-                System.out.println("Consumed item: " + item.getValue() + 
-                " Turnaround time: " + turnaroundTime);
-
             }
             catch(InterruptedException e)
             {
@@ -62,11 +56,14 @@ public class Main
         }
     }
 
-    public static void runThreads(int sleepTime, int numProducers, int numConsumers)
+    public static void runThreads(TestCase testCase)
     {
-        Main.sleepTime = sleepTime;
-        runThreads.set(true);
         List<Thread> threads = new ArrayList<>();
+        int numProducers = testCase.getNumProducers();
+        int numConsumers = testCase.getNumConsumers();
+    
+        sleepTime = testCase.getSleepTime();
+        runThreads.set(true);
 
         for(int i = 0; i < numProducers; i++)
         {
@@ -98,7 +95,9 @@ public class Main
             }
 
             double avgTurnaroundTime = (double)totalTurnaroundTime / totalItems;
-            System.out.println("Average Turnaround Time: " + avgTurnaroundTime);
+
+            WriteFile.writeFile(testCase.getOutFile(), testCase.getTestCaseID(), 
+            sleepTime, numProducers, numConsumers, avgTurnaroundTime);
         }
         catch(InterruptedException e)
         {
@@ -109,16 +108,23 @@ public class Main
 
     public static void main(String[] args)
     {
-        File file = new File("PRODUCER_CONSUMER/Input-4sec-Wait.txt");
-        List<TestCase> testCases = FileReader.readFile(file.getAbsolutePath());
+        List<String> files = Menu.selectFile();
+        String inFile = files.get(0);
+        String outFile = files.get(1);
+
+        System.out.println("You've chosen " + inFile);
+        System.out.println("Running simulation...");
+
+        List<TestCase> testCases = ReadFile.readFile(inFile);
 
         for(TestCase testCase : testCases)
         {
-            runThreads(testCase.getSleepTime(), testCase.getNumProducers(), testCase.getNumConsumers());
+            testCase.setOutFile(outFile);
+            runThreads(testCase);
         }
+        System.out.println("Simulation completed. Check the output file.");
 
     }
-
 
 }
 
