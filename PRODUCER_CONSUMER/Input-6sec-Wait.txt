@@ -1,4 +1,4 @@
-Sleep Number of Producers  Number of consumers
+Sleep Time  Producers   Consumers
 6   1   1
 6   4   1
 6   16  1
@@ -10,4 +10,4 @@ Sleep Number of Producers  Number of consumers
 6   16  4
 6   1   16
 6   4   16
-6   16  16
+6   16  16              
