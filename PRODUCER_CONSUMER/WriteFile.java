@@ -16,7 +16,7 @@ public class WriteFile
                 writer = new FileWriter(outFile);
                 writer.write(String.format("%-10s %-15s %-20s %-20s %-20s%n",
                 "Test Case", "Sleep Time", "Number of Producers", 
-                "Number of Consumers", "Average Turnaround Time" ));
+                "Number of Consumers", "Average Turnaround Time(ms)" ));
 
             }
             else
