@@ -16,7 +16,7 @@ public class Item
         return value;
     }
 
-    public long getProductionTime() 
+    public double getProductionTime() 
     {
         return productionTime;
     }
