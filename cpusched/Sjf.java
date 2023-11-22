@@ -31,7 +31,6 @@ public class Sjf extends Calculations
         
         // Initialize variables to store statistics
         int numProcess = processQueue.size();
-        int turnaroundTime = 0;
         int totalWaitTime = 0;
         int totalTurnaroundTime = 0;
         int totalResponseTime = 0;
