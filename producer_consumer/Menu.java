@@ -1,4 +1,4 @@
-package PRODUCER_CONSUMER;
+package producer_consumer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,21 +24,21 @@ public class Menu
         switch(choice)
         {
             case 1:
-                inFile = "PRODUCER_CONSUMER/Input-4sec-Wait.txt";
-                outFile = "PRODUCER_CONSUMER/Output-4sec-Wait.txt";
+                inFile = "producer_consumer/Input-4sec-Wait.txt";
+                outFile = "producer_consumer/Output-4sec-Wait.txt";
                 break;
             case 2:
-                inFile = "PRODUCER_CONSUMER/Input-6sec-Wait.txt";
-                outFile = "PRODUCER_CONSUMER/Output-6sec-Wait.txt";
+                inFile = "producer_consumer/Input-6sec-Wait.txt";
+                outFile = "producer_consumer/Output-6sec-Wait.txt";
                 break;
             case 3:
-                inFile = "PRODUCER_CONSUMER/Input-8sec-Wait.txt";
-                outFile = "PRODUCER_CONSUMER/Output-8sec-Wait.txt";
+                inFile = "producer_consumer/Input-8sec-Wait.txt";
+                outFile = "producer_consumer/Output-8sec-Wait.txt";
                 break;
             default:
                 System.out.println("Invalid choice. Using default input file.");
-                inFile = "PRODUCER_CONSUMER/Input-4sec-Wait.txt";
-                outFile = "PRODUCER_CONSUMER/Output-4sec-Wait.txt";
+                inFile = "producer_consumer/Input-4sec-Wait.txt";
+                outFile = "producer_consumer/Output-4sec-Wait.txt";
                 break;
         }
         files.add(inFile);
