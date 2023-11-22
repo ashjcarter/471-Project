@@ -25,7 +25,9 @@ public class Menu
 
         // Read the user's choice
         int choice = scanner.nextInt();
-        scanner.close();       
+        scanner.close(); 
+        
+        System.out.println("Starting scheduling...");
 
         return choice;
     }
