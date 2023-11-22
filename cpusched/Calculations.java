@@ -42,7 +42,7 @@ public class Calculations
         result.append("Average turnaround time (in CPU burst times): ").append(df.format(avgTurnaroundTime)).append("\n");
         result.append("Average response time (in CPU burst times): ").append(df.format(avgResponseTime));
 
-        // Converting the string to a string and returning the result 
+        // Converting the StringBuilder to a string and returning the result 
         return result.toString();
     }
     
