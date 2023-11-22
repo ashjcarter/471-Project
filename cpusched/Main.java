@@ -55,7 +55,7 @@ public class Main
 
     public static void main (String[] args)
     {
-        Queue<Process> processQueue = readFile("CPUSCHED/Datafile1-txt.txt");
+        Queue<Process> processQueue = readFile("cpusched/Datafile1-txt.txt");
         Menu menu = new Menu();
         int choice = menu.display();
         String outFile = "";
@@ -66,23 +66,23 @@ public class Main
             case 1:
                 Fifo fifo= new Fifo();
                 output = fifo.fifoScheduling(processQueue);
-                outFile = "CPUSCHED/Fifo-Output.txt";
+                outFile = "cpusched/Fifo-Output.txt";
                 break;
             case 2:
                 Sjf sjf = new Sjf();
                 output = sjf.sjfScheduling(processQueue);
-                outFile = "CPUSCHED/Sjf-Output.txt";
+                outFile = "cpusched/Sjf-Output.txt";
                 break;
             case 3:
                 Priority priority = new Priority();
                 output = priority.priorityScheduling(processQueue);
-                outFile = "CPUSCHED/Priority-Output.txt";
+                outFile = "cpusched/Priority-Output.txt";
                 break;
             default:
                 System.out.println("Invalid input. Exiting...");
                 Fifo fifo2 = new Fifo();
                 output = fifo2.fifoScheduling(processQueue);
-                outFile = "CPUSCHED/Fifo-Output.txt";
+                outFile = "cpusched/Fifo-Output.txt";
         }
         try(PrintWriter out = new PrintWriter(outFile))
         {

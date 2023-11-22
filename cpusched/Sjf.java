@@ -63,7 +63,7 @@ public class Sjf extends Calculations
         }
     }
     Calculations calc = new Calculations();
-    return calc.printCalc(currTime, numProcess, totalWaitTime, 
+    return calc.generateStats(currTime, numProcess, totalWaitTime, 
                totalTurnaroundTime, totalResponseTime, totalProcessingTime);
         
     }
