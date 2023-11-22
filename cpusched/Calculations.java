@@ -7,17 +7,17 @@ import java.text.DecimalFormat;
  */
 public class Calculations 
 {
-/**
- * Generates a string containing statistics for the run.
- * 
- * @param currTime              The current time.
- * @param numProcess            The number of processes.
- * @param totalWaitTime         The total wait time for all processes.
- * @param totalTurnaroundTime   The total turnaround time for all processes.
- * @param totalResponseTime     The total response time for al processes.
- * @param totalProcessingTime   The total processing time for all processes.
- * @return                      A string containing the calculated statistics.
- */
+    /**
+     * Generates a string containing statistics for the run.
+     * 
+     * @param currTime              The current time.
+     * @param numProcess            The number of processes.
+     * @param totalWaitTime         The total wait time for all processes.
+     * @param totalTurnaroundTime   The total turnaround time for all processes.
+     * @param totalResponseTime     The total response time for al processes.
+     * @param totalProcessingTime   The total processing time for all processes.
+     * @return                      A string containing the calculated statistics.
+     */
     public String generateStats(int currTime, int numProcess, int totalWaitTime, 
                                 int totalTurnaroundTime, int totalResponseTime, int totalProcessingTime) 
     {
