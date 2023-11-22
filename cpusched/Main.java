@@ -127,7 +127,8 @@ public class Main
         {
             e.printStackTrace();
         }
-        
+
+        System.out.println("Output written to " + outFile);     
     }
     
 }
