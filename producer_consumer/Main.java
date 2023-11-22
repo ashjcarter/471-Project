@@ -12,7 +12,7 @@ public class Main
     private static final BlockingQueue<Item> buffer = new LinkedBlockingQueue<>();
     private static final AtomicBoolean runThreads = new AtomicBoolean(true);
     private static final Random rand = new Random();
-    private static int sleepTime = 0;
+    private static int sleepTime = 1;
     private static long totalTurnaroundTime = 0;
     private static int totalItems = 0;
 
@@ -24,8 +24,8 @@ public class Main
             try
             {
                 Thread.sleep(rand.nextInt(sleepTime) * 1000);
-                int value = rand.nextInt(10);
-                Item item = new Item(value);
+                int numItems = rand.nextInt(10);
+                Item item = new Item(numItems);
                 buffer.put(item);
 
             }
