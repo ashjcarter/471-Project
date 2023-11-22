@@ -36,7 +36,7 @@ public class Calculations
         result.append("Statistics for the Run\n\n");
         result.append("Number of processes: ").append(numProcess).append("\n");
         result.append("Total elapsed time: ").append(df.format(currTime)).append("\n");
-        result.append("Throughput: ").append(df.format(throughput));
+        result.append("Throughput: ").append(df.format(throughput)).append("\n");
         result.append("CPU utilization: ").append(df.format(cpuUtilization)).append("%\n");
         result.append("Average wait time (in CPU burst times): ").append(df.format(avgWaitTime)).append("\n");
         result.append("Average turnaround time (in CPU burst times): ").append(df.format(avgTurnaroundTime)).append("\n");
