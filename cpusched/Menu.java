@@ -20,8 +20,8 @@ public class Menu
         // Display the menu options
         System.out.println("Select a scheduling algorithm:");
         System.out.println("1. First Come First Serve");
-        System.out.println("2. Shortest Job First");
-        System.out.println("3. Priority(non preemptive)");
+        System.out.println("2. Shortest Job First(non preemptive)");
+        System.out.println("3. Priority(preemptive)");
 
         // Read the user's choice
         int choice = scanner.nextInt();
