@@ -55,7 +55,7 @@ public class Main
      */
     private static void consumer()
     {
-        // Keep consuming items until the flag is set to false and the buffer is empty
+        // Keep consuming items until the flag is set to false or the buffer is empty
         while(runThreads.get() || !buffer.isEmpty()) 
         {
             try
