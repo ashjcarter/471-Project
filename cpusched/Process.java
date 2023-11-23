@@ -27,8 +27,6 @@ public class Process
     }
     
    /**
-    * Returns the ID of the process.
-    *
     * @return The process ID
     */
     public int getProcessID()
@@ -47,8 +45,6 @@ public class Process
     }
 
    /**
-    * Returns the arrival time of the process.
-    *
     * @return The arrival time
     */
     public int getArrivalTime()
@@ -67,8 +63,6 @@ public class Process
     }
 
    /**
-    * Returns the priority of the process.
-    *
     * @return The priority
     */
     public int getPriority()
@@ -87,8 +81,6 @@ public class Process
     }
 
    /**
-    * Returns the burst units required by the process.
-    *
     * @return The burst units
     */
     public int getBurstUnits()

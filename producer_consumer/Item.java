@@ -20,8 +20,6 @@ public class Item
     }
 
     /**
-     * Returns the randomly generated item value of this item.
-     *
      * @return The randomly generated item value of this item
      */
     public int getRandItem() 
@@ -30,9 +28,6 @@ public class Item
     }
 
     /**
-     * Returns the production time of this item.
-     * The production time is represented as the number of milliseconds 
-     *
      * @return The production time of this item
      */
     public long getProductionTime() 

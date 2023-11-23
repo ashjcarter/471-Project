@@ -8,7 +8,8 @@ import java.util.Set;
 
 /**
  * This class implements a Priority Scheduling algorithm.
- * It extends the Calculations class to generate statistics based on the Priority Scheduling.
+ * It extends the Calculations class to generate statistics 
+ * based on the Priority Scheduling.
  */
 public class Priority extends Calculations
 {
