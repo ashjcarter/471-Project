@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Main
 {
-    private static final BlockingQueue<Item> buffer = new LinkedBlockingQueue<>();
+    private static final int bufferSize = 10;
+    private static final BlockingQueue<Item> buffer = new LinkedBlockingQueue<>(bufferSize);
     private static final AtomicBoolean runThreads = new AtomicBoolean(true);
     private static final Random rand = new Random();
     private static int sleepTime = 1;
@@ -23,14 +24,16 @@ public class Main
         {
             try
             {
-                Thread.sleep(rand.nextInt(sleepTime) * 1000);
-                int numItems = rand.nextInt(10);
-                Item item = new Item(numItems);
+                Thread.sleep(sleepTime);
+                int randItem = rand.nextInt(100);
+                Item item = new Item(randItem);
                 buffer.put(item);
+                System.out.println("Producer produced an item: " + item);
 
             }
             catch(InterruptedException e)
             {
+                System.out.println("Producer interrupted.");
                 break;
             }
         }
@@ -47,9 +50,14 @@ public class Main
                 double turnaroundTime = System.currentTimeMillis() - item.getProductionTime();
                 totalTurnaroundTime += turnaroundTime;
                 totalItems++;
+                System.out.println("Consumer consumed an item: " + item);
+                System.out.println("Current turnaround time: " + turnaroundTime);
+                System.out.println("Current total items: " + totalItems);
+                Thread.sleep(sleepTime);
             }
             catch(InterruptedException e)
             {
+                System.out.println("Consumer interrupted.");
                 break;
             }
 
@@ -61,6 +69,7 @@ public class Main
         List<Thread> threads = new ArrayList<>();
         int numProducers = testCase.getNumProducers();
         int numConsumers = testCase.getNumConsumers();
+        int runThreadsSleep = sleepTime * 100;
     
         sleepTime = testCase.getSleepTime();
         runThreads.set(true);
@@ -81,7 +90,7 @@ public class Main
 
         try
         {
-            Thread.sleep(sleepTime * 1000);
+            Thread.sleep(runThreadsSleep);
             runThreads.set(false);
 
             for(Thread thread : threads)
@@ -94,7 +103,7 @@ public class Main
                 thread.join();
             }
 
-            double avgTurnaroundTime = (double)totalTurnaroundTime / totalItems;
+            double avgTurnaroundTime = (double)totalTurnaroundTime / totalItems ;
 
             WriteFile.writeFile(testCase.getOutFile(), testCase.getTestCaseID(), 
             sleepTime, numProducers, numConsumers, avgTurnaroundTime);
