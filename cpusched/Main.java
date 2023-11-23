@@ -8,8 +8,9 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * This class contains the main entry point and methods for reading a file, scheduling processes,
- * and writing the output to a file based on different scheduling algorithms.
+ * This class contains the main entry point and methods for reading a file, 
+ * scheduling processes, and writing the output to a file 
+ * based on different scheduling algorithms.
  */
 public class Main 
 {
