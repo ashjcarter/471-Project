@@ -61,9 +61,14 @@ public class Main
             try
             {
                 Item item = buffer.take();
+
+                // Calculate the turnaround time
                 double turnaroundTime = System.currentTimeMillis() - item.getProductionTime();
+
+                // Update the total turnaround time and total items
                 totalTurnaroundTime += turnaroundTime;
                 totalItems++;
+                
                 Thread.sleep(sleepTime);
             }
             catch(InterruptedException e)
