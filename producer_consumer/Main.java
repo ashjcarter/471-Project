@@ -68,7 +68,7 @@ public class Main
             }
             catch(InterruptedException e)
             {
-                System.out.println("Consumer interrupted.");
+                // System.out.println("Consumer interrupted.");
                 break;
             }
 
