@@ -101,13 +101,13 @@ public class Main
                 outFile = "cpusched/Fifo-Output.txt";
                 break;
             case 2:
-                // Shortest job first
+                // Shortest job first non preemptive
                 Sjf sjf = new Sjf();
                 output = sjf.sjfScheduling(processQueue);
                 outFile = "cpusched/Sjf-Output.txt";
                 break;
             case 3:
-                // Non preemptive priority
+                // Preemptive priority
                 Priority priority = new Priority();
                 output = priority.priorityScheduling(processQueue);
                 outFile = "cpusched/Priority-Output.txt";
